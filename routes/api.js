@@ -1,35 +1,23 @@
-const router = require("express").Router();
-const Transaction = require("../models/workout.js");
+const db = require("../models");
 
-router.post("/api/transaction", ({ body }, res) => {
-  Transaction.create(body)
-    .then(dbTransaction => {
-      res.json(dbTransaction);
-    })
-    .catch(err => {
-      res.status(400).json(err);
-    });
+module.exports = function(app) {
+
+    app.get("/api/workouts", (req, res) => 
+    {
+        db.Workout.find({}, (error, data) => 
+    {
+    if (error) {
+      res.send(error)
+    } 
+    else {
+      res.json(data)
+    }
+  });
 });
 
-router.post("/api/transaction/bulk", ({ body }, res) => {
-  Transaction.insertMany(body)
-    .then(dbTransaction => {
-      res.json(dbTransaction);
-    })
-    .catch(err => {
-      res.status(400).json(err);
-    });
-});
 
-router.get("/api/transaction", (req, res) => {
-  Transaction.find({})
-    .sort({ date: -1 })
-    .then(dbTransaction => {
-      res.json(dbTransaction);
-    })
-    .catch(err => {
-      res.status(400).json(err);
-    });
-});
+}
 
-module.exports = router;
+
+
+

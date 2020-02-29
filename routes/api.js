@@ -39,4 +39,30 @@ module.exports = function(app) {
         res.send(error);
       });
   });
+
+  app.get("/api/workouts/range", (req, res) => {
+      db.Workout.find({}).sort({day: "desc"}).limit(7)
+      .then(data => {
+        res.json(data);
+      })
+      .catch(error => {
+        res.send(error);
+      });
+
+  });
+
+  app.delete("/api/workouts", (req, res) => {
+    db.Workout.deleteOne(
+      {
+        _id: mongoose.Types.ObjectID(req.body.id)
+      },
+      (error, data) => {
+        if (error) {
+          res.send(error);
+        } else {
+          res.send(data);
+        }
+      }
+    );
+  });
 };

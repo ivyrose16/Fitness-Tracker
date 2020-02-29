@@ -7,4 +7,4 @@
 * [Heroku Deployed Link](https://shielded-ocean-69209.herokuapp.com/)
 
 * Take a look behind the scenes at the code that makes the app run. Here is the workout schema:
-* ![Screesnhot of workout.js](./public/FitnessTrackerCode.JPG)
+![Screesnhot of workout.js](./public/FitnessTrackerCode.JPG)
